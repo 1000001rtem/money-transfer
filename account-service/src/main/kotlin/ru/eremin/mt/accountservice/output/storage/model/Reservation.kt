@@ -8,5 +8,6 @@ class Reservation(
     @Id
     val id: UUID = UUID.randomUUID(),
     val accountId: UUID,
-    val amount: BigDecimal
+    val amount: BigDecimal,
+    val transactionId: String,
 ) : Entity()

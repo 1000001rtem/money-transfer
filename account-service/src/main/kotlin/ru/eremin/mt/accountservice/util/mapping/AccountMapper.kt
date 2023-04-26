@@ -1,13 +1,13 @@
 package ru.eremin.mt.accountservice.util.mapping
 
-import ru.eremin.mt.accountservice.business.dto.AccountDto
 import ru.eremin.mt.accountservice.output.storage.model.Account
+import ru.eremin.mt.common.model.domain.AccountDto
 
 fun Account.toDto() = AccountDto(
     id = this.id,
     currency = this.currency,
     balance = this.balance,
-    ownerId = this.owner.id,
+    ownerId = this.owner.id.toString(),
     createdAt = this.createdAt,
     updateAt = this.updateAt
 )

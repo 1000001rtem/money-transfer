@@ -13,6 +13,7 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 extra["springCloudVersion"] = "2022.0.2"
@@ -34,8 +35,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.cloud:spring-cloud-stream-test-binder")
-    testImplementation("org.testcontainers:postgresql")
-    testImplementation("org.testcontainers:r2dbc")
+//    testImplementation("org.testcontainers:postgresql")
+//    testImplementation("org.testcontainers:r2dbc")
 }
 
 dependencyManagement {
