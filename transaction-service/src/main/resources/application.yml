@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    stream:
+      function:
+        definition: transactionEventSender
+      kafka:
+        default:
+          consumer:
+            startOffset: latest
+            resetOffsets: true
+        binder:
+          brokers: localhost:9092
+          autoCreateTopics: false
+      bindings:
+        personalDataResponseListener-in-0:
+          destination: ${PERSONAL_DATA_RESPONSES_TOPIC:pl.personal.data.enrichment.response.pub}
+          group: pl-kfk-${spring.application.name}
+
+
+
+service:
+  client:
+    account:
+      url: localhost:8090/api/v1/account
+    reservation:
+      url: localhost:8090/api/v1/reservation

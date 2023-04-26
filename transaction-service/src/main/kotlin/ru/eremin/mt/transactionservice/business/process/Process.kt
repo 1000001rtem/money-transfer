@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicReference
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import reactor.core.publisher.Mono
+import reactor.core.scheduler.Schedulers
 import reactor.kotlin.core.publisher.toMono
 
 class Process<C : Context, R>(
@@ -20,6 +21,8 @@ class Process<C : Context, R>(
         }
             .transform { applySteps(it) }
             .flatMap { finalize(it) }
+            .doOnError { finalizeError(it, context.getTransactionId()) }
+            .subscribeOn(Schedulers.boundedElastic())
     }
 
     private fun applySteps(contextRef: Mono<AtomicReference<C>>): Mono<AtomicReference<C>> {
@@ -50,6 +53,11 @@ class Process<C : Context, R>(
             .doOnNext {
                 log.trace("Finish Process $processName for transaction ${context.getTransactionId()}")
             }
+    }
+
+    private fun finalizeError(error: Throwable, id: String) {
+        log.error("Process $processName for transaction $id finished with error", error)
+        finalizer.finalizeError(error, id)
     }
 
     companion object {
