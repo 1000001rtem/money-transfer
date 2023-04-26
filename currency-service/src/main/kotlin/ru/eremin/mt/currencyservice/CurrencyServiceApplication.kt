@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CurrencyServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<CurrencyServiceApplication>(*args)
+    runApplication<CurrencyServiceApplication>(*args)
 }
