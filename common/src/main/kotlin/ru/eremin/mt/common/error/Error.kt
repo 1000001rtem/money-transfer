@@ -25,6 +25,12 @@ interface Error {
         this.message.format(*values),
         this.displayMessage.format(*values)
     )
+
+    fun replaceMessages(message: String? = null, displayMessage: String? = null) = FormattedError(
+        this.code,
+        message ?: this.message,
+        displayMessage ?: this.displayMessage
+    )
 }
 
 data class FormattedError(
