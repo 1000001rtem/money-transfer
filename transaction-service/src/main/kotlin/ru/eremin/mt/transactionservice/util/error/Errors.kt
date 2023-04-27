@@ -21,7 +21,12 @@ enum class Errors(
     INSUFFICIENT_FUNDS(
         message = "Insufficient funds for transaction: %s",
         displayMessage = "Insufficient funds"
-    );
+    ),
+    TOTAL_AMOUNT_ERROR(
+        message = "Can`t get total amount for transaction %s",
+        displayMessage = "Something went wrong"
+    )
+    ;
 
     override val code: String = name
 }

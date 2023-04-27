@@ -16,11 +16,11 @@ class ReservePersonTransfer(
 ) : Step<PersonTransactionContext> {
     override fun isApply(context: PersonTransactionContext): Boolean = true
 
-    override fun apply(context: PersonTransactionContext): Mono<PersonTransactionContext> =
-        reservationClient.reserve(
+    override fun apply(context: PersonTransactionContext): Mono<PersonTransactionContext> {
+        return reservationClient.reserve(
             OperationRequest(
                 context.transaction.from?.account!!,
-                context.transaction.from.amount.multiply(context.transaction.commission),
+                context.transaction.totalAmount() ?: return Mono.error(Errors.TOTAL_AMOUNT_ERROR.asException()),
                 context.transaction.from.currency.currencyCode,
                 context.getTransactionId()
             )
@@ -31,6 +31,7 @@ class ReservePersonTransfer(
                     context.toMono()
                 } else Mono.error(Errors.INSUFFICIENT_FUNDS.replaceMessages(message = it.comment).asException())
             }
+    }
 
     companion object {
         val log = LoggerFactory.getLogger(this::class.java)

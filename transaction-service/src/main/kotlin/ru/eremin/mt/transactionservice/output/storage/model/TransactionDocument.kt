@@ -21,4 +21,6 @@ data class TransactionDocument(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     var updatedAt: LocalDateTime = LocalDateTime.now(),
     val comment: String? = null
-)
+){
+    fun totalAmount() = from?.amount?.plus(from.amount.multiply(commission))
+}
