@@ -1,15 +1,14 @@
-package ru.eremin.mt.accountservice.business.dto
+package ru.eremin.mt.common.model.domain
 
 import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.util.*
-import org.springframework.hateoas.RepresentationModel
 
-class AccountDto(
+data class AccountDto(
     val id: UUID,
     val currency: Currency,
     val balance: BigDecimal,
-    val ownerId: UUID,
+    val ownerId: String,
     val createdAt: LocalDateTime,
     var updateAt: LocalDateTime
-) : RepresentationModel<AccountDto>()
+)

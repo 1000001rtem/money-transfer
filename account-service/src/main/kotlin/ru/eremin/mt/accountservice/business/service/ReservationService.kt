@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import java.util.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import ru.eremin.mt.accountservice.business.dto.ReservationDto
+import ru.eremin.mt.common.model.domain.ReservationDto
 
 interface ReservationService {
 

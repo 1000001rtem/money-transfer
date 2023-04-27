@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("org.springframework.boot") version "3.0.5"
     id("io.spring.dependency-management") version "1.1.0"
@@ -32,5 +30,5 @@ publishing {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     api("org.springframework.boot:spring-boot-starter-actuator")
-    api("ru.eremin.mt:common:1.0.0")
+    api("ru.eremin.mt:common:0.0.1")
 }

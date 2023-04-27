@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import ru.eremin.mt.accountservice.business.dto.AccountDto
 import ru.eremin.mt.accountservice.business.service.AccountService
 import ru.eremin.mt.accountservice.input.dto.OperationRequest
+import ru.eremin.mt.common.model.domain.AccountDto
 
 @RestController
 @RequestMapping("/api/v1/account")
@@ -28,7 +28,7 @@ class AccountController(
         accountService.findAccountsById(id)
 
     @PostMapping("debit")
-    fun debitFunds (@RequestBody request: OperationRequest) =
+    fun debitFunds(@RequestBody request: OperationRequest) =
         accountService.debitFunds(
             accountId = request.accountId,
             amount = request.amount,
@@ -36,7 +36,7 @@ class AccountController(
         )
 
     @PostMapping("debit")
-    fun addFunds (@RequestBody request: OperationRequest) =
+    fun addFunds(@RequestBody request: OperationRequest) =
         accountService.addFunds(
             accountId = request.accountId,
             amount = request.amount,
