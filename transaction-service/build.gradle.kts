@@ -32,6 +32,11 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.cloud:spring-cloud-stream-test-binder")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation("org.testcontainers:testcontainers:1.18.0")
+    testImplementation("org.testcontainers:mongodb:1.18.0")
+    testImplementation ("org.testcontainers:junit-jupiter:1.18.0")
 }
 
 dependencyManagement {

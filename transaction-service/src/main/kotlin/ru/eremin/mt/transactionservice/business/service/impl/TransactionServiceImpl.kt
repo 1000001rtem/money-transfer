@@ -16,13 +16,14 @@ import ru.eremin.mt.transactionservice.util.mapper.toDto
 
 @Service
 class TransactionServiceImpl(
-    processList: List<Process<in Context, Transaction>>,
+    final val processList: List<Process<*, Transaction>>,
     private val transactionRepository: TransactionRepository
 ) : TransactionService {
 
-    private val processes: Map<String, Process<in Context, Transaction>> = processList.associateBy { it.processName }
+    private val processes: Map<String, Process<*, Transaction>> = processList.associateBy { it.processName }
     override fun makeTransaction(info: TransactionInfo, userId: String): Mono<Transaction> =
-        processes["transaction/${info.transactionType}"]?.let {
+        processes["transaction/${info.transactionType.toString().lowercase()}"]?.let {
+            it as Process<Context, Transaction>
             val context: Context = PersonTransactionContext(info, userId)
             it.process(context)
         } ?: throw NOT_IMPLEMENTED_TRANSACTION_TYPE.asException()

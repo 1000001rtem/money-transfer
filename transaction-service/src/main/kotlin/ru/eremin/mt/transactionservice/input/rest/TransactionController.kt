@@ -28,7 +28,7 @@ class TransactionController(
     ): Mono<MtResponse> = transactionService.makeTransaction(request, userId)
         .map { MtDataResponse(it) }
 
-    @GetMapping
+    @GetMapping("/id")
     fun findById(@RequestParam("id") id: String): Mono<MtResponse> =
         transactionService.findTransaction(id)
             .map { MtDataResponse(it) }

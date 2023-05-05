@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      socketTimeout: 60000
+      database: test
+logging:
+  level:
+    root: debug

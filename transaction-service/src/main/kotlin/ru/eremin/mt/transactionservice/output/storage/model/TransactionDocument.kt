@@ -1,6 +1,8 @@
 package ru.eremin.mt.transactionservice.output.storage.model
 
 import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
 import java.time.LocalDateTime
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -21,6 +23,12 @@ data class TransactionDocument(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     var updatedAt: LocalDateTime = LocalDateTime.now(),
     val comment: String? = null
-){
-    fun totalAmount() = from?.amount?.plus(from.amount.multiply(commission))
+) {
+    fun totalAmount() = from?.amount?.add(
+        from.amount.multiply(
+            commission?.divide(BigDecimal.valueOf(100)), MathContext(
+                2, RoundingMode.HALF_UP
+            )
+        )
+    )
 }
