@@ -3,7 +3,7 @@
 Demo project for money-transfer application
 
 ## Using technologies
-- Java
+- Kotlin
 - Spring Boot
 - WebFlux
 - R2DBC
