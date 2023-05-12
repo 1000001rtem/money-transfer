@@ -17,16 +17,16 @@ import org.testcontainers.utility.DockerImageName
 @ActiveProfiles("test")
 class IntegrationTest {
     companion object {
-        @Container
         @JvmStatic
+        @Container
         var container = MongoDBContainer(DockerImageName.parse("mongo:5"))
             .waitingFor(
                 Wait.forLogMessage(".*waiting for connections.*", 1)
                     .withStartupTimeout(Duration.ofSeconds(1200))
             )
 
-        @DynamicPropertySource
         @JvmStatic
+        @DynamicPropertySource
         fun mongoDbProperties(registry: DynamicPropertyRegistry) {
             registry.add("spring.data.mongodb.uri") { container.replicaSetUrl }
         }

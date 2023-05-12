@@ -5,13 +5,7 @@ import java.math.BigDecimal
 import java.util.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
-import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.any
 import org.mockito.kotlin.argThat
 import org.mockito.kotlin.doNothing
@@ -46,7 +40,7 @@ import ru.eremin.mt.transactionservice.util.error.Errors
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureWebTestClient
-@DirtiesContext(classMode= DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class PersonTransferTest : IntegrationTest() {
 
     @Autowired

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.0.5"
+    id("org.springframework.boot") version "3.0.6"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
@@ -27,7 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework:spring-jdbc")
-    implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka:3.1.5")
+    implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
     implementation("ru.eremin.mt:money-transfer-starter:0.0.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
@@ -36,7 +36,9 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.testcontainers:testcontainers:1.18.0")
     testImplementation("org.testcontainers:mongodb:1.18.0")
-    testImplementation ("org.testcontainers:junit-jupiter:1.18.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.0")
+    testImplementation("org.testcontainers:kafka:1.18.1")
+
 }
 
 dependencyManagement {

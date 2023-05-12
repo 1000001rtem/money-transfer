@@ -2,10 +2,18 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: transaction-service
+  data:
+    mongodb:
+      database: mt
+      uri: mongodb://mongodbuser:123123@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
   cloud:
     stream:
       function:
-        definition: transactionEventSender
+        routing:
+          enabled: true
+        definition: functionRouter
       kafka:
         default:
           consumer:
@@ -15,10 +23,11 @@ spring:
           brokers: localhost:9092
           autoCreateTopics: false
       bindings:
-        personalDataResponseListener-in-0:
-          destination: ${PERSONAL_DATA_RESPONSES_TOPIC:pl.personal.data.enrichment.response.pub}
-          group: pl-kfk-${spring.application.name}
-
+        functionRouter-in-0:
+          destination: mt.events.pub
+          group: mt-${spring.application.name}
+        money-transfer-events-out:
+          destination: mt.events.pub
 
 
 service:
@@ -27,3 +36,8 @@ service:
       url: localhost:8090/api/v1/account
     reservation:
       url: localhost:8090/api/v1/reservation
+  eventBindings:
+    TransactionSent: transactionSentListener
+    TransactionSucceed: transactionSucceedListener
+    TransactionRejected: transactionRejectListener
+    TransactionError: transactionErrorListener

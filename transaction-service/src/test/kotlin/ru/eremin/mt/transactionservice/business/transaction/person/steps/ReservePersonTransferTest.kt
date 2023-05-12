@@ -32,7 +32,7 @@ class ReservePersonTransferTest {
     }
 
     @Test
-    fun `should send amount with commission`(){
+    fun `should send amount with commission`() {
         val context = personTransactionContext().copy(
             transaction = fullPersonTransaction()
         )
