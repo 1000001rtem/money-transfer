@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      socketTimeout: 60000
+      database: test
+

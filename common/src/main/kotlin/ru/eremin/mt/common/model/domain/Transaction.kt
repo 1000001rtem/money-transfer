@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.util.*
 
-class Transaction(
+data class Transaction(
     val id: String,
     val from: SideInfo? = null,
     val to: SideInfo? = null,
@@ -17,7 +17,7 @@ class Transaction(
     val comment: String? = null
 )
 
-class SideInfo(
+data class SideInfo(
     val currency: Currency,
     val account: UUID,
     val amount: BigDecimal

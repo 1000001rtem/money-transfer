@@ -25,7 +25,11 @@ enum class Errors(
     TOTAL_AMOUNT_ERROR(
         message = "Can`t get total amount for transaction %s",
         displayMessage = "Something went wrong"
-    )
+    ),
+    TRANSACTION_NOT_FOUND(
+        message = "Transaction with id %s not found",
+        displayMessage = "Something went wrong"
+    ),
     ;
 
     override val code: String = name

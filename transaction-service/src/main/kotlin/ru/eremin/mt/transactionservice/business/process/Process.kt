@@ -16,7 +16,7 @@ class Process<C : Context, R>(
     fun process(context: C): Mono<R> {
         val contextReference = AtomicReference(context)
         return Mono.fromCallable {
-            log.trace("Start process $processName for transaction ${context.getTransactionId()}")
+            log.info("Start process $processName for transaction ${context.getTransactionId()}")
             contextReference
         }
             .transform { applySteps(it) }
@@ -38,20 +38,20 @@ class Process<C : Context, R>(
         if (!step.isApply(context)) {
             return contextRef.toMono()
         }
-        log.trace("Process $processName. Apply step $step to transaction ${context.getTransactionId()}")
+        log.debug("Process $processName. Apply step $step to transaction ${context.getTransactionId()}")
         return step.apply(context)
             .map {
-                log.trace("Process $processName. Finish step $step for transaction ${context.getTransactionId()}")
-                AtomicReference(context)
+                log.debug("Process $processName. Finish step $step for transaction ${context.getTransactionId()}")
+                AtomicReference(it)
             }
     }
 
     private fun finalize(contextRef: AtomicReference<C>): Mono<R> {
         val context = contextRef.get()
-        log.info("Start Finalize process $processName for transaction ${context.getTransactionId()}")
+        log.debug("Start Finalize process $processName for transaction ${context.getTransactionId()}")
         return finalizer.finalize(context)
             .doOnNext {
-                log.trace("Finish Process $processName for transaction ${context.getTransactionId()}")
+                log.info("Finish Process $processName for transaction ${context.getTransactionId()}")
             }
     }
 
