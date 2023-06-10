@@ -1,1 +1,10 @@
-
+spring:
+  flyway:
+    schemas: accounts
+    url: jdbc:postgresql://localhost:5432/accounts_db
+    user: root
+    password: 123123
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/accounts_db?schema=accounts
+    username: root
+    password: 123123

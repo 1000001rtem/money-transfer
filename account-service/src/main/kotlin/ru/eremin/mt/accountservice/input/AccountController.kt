@@ -19,7 +19,7 @@ class AccountController(
     private val accountService: AccountService
 ) {
 
-    @GetMapping
+    @GetMapping("/find-by-user")
     fun findByUserId(@RequestParam("userId") userId: UUID): Flux<AccountDto> =
         accountService.findAccountsByUser(userId)
 
@@ -35,7 +35,7 @@ class AccountController(
             currency = Currency.getInstance(request.currencyCode)
         )
 
-    @PostMapping("debit")
+    @PostMapping("add")
     fun addFunds(@RequestBody request: OperationRequest) =
         accountService.addFunds(
             accountId = request.accountId,

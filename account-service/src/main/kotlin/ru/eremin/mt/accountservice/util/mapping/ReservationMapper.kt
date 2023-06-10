@@ -9,5 +9,5 @@ fun Reservation.toDto() = ReservationDto(
     amount = this.amount,
     createdAt = this.createdAt,
     transactionId = this.transactionId,
-    updateAt = this.updateAt
+    updateAt = this.updatedAt
 )

@@ -7,7 +7,7 @@ fun Account.toDto() = AccountDto(
     id = this.id,
     currency = this.currency,
     balance = this.balance,
-    ownerId = this.owner.id.toString(),
+    ownerId = this.ownerId.toString(),
     createdAt = this.createdAt,
-    updateAt = this.updateAt
+    updateAt = this.updatedAt
 )
